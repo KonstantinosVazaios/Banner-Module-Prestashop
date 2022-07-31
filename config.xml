@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+	<name>sleedbanner</name>
+	<displayName><![CDATA[Create a banner and display to the front-office]]></displayName>
+	<version><![CDATA[1.0.0]]></version>
+	<description><![CDATA[This banner consists of an image and multilingual alt text]]></description>
+	<author><![CDATA[Sleed]]></author>
+	<tab><![CDATA[front_office_features]]></tab>
+	<confirmUninstall><![CDATA[Are you sure you want to uninstall the module?]]></confirmUninstall>
+	<is_configurable>1</is_configurable>
+	<need_instance>0</need_instance>
+	<limited_countries></limited_countries>
+</module>

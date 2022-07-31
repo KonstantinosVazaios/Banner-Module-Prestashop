@@ -1,0 +1,35 @@
+Create a banner and display to the front-office - Validation report
+-------
+
+Addon details
+-------------
+
+Validation date: 2022-07-31
+Addon type: Module
+Technical name: sleedbanner
+Display name: Create a banner and display to the front-office
+Author: Sleed
+Version: 1.0.0
+Category (tab): front_office_features
+Description: This banner consists of an image and multilingual alt text
+
+
+Licenses
+-------------
+
+In file /views/templates/admin/_configure/helpers/form/form.tpl:
+ * License headers are not up to date
+
+Line	| Code
+--------| ------------------------------------------------------
+21	| *  @copyright  2007-2016 PrestaShop SA
+
+
+In file /views/templates/hook/sleedbanner.tpl:
+ * License headers are not up to date
+
+Line	| Code
+--------| ------------------------------------------------------
+21	| *  @copyright  2007-2016 PrestaShop SA
+
+
