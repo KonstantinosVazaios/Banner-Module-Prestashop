@@ -1,0 +1,22 @@
+Create a banner and display to the front-office - Validation report
+-------
+
+Addon details
+-------------
+
+Validation date: 2022-08-01
+Addon type: Module
+Technical name: sleedbanner
+Display name: Create a banner and display to the front-office
+Author: Sleed
+Version: 1.0.0
+Category (tab): front_office_features
+Description: This banner consists of an image and multilingual alt text
+
+
+Structure
+-------------
+
+Directory /.git should be removed
+* .git
+
