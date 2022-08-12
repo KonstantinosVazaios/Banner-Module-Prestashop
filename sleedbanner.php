@@ -32,7 +32,7 @@ if (!defined('_PS_VERSION_')) {
 class SleedBanner extends Module 
 {
     public $default_image_desktop = "default-banner-desktop.png";
-    public $default_image_mobile = "default-banner-mobile.jpg";
+    public $default_image_mobile = "default-banner-mobile.png";
 
     public function __construct()
     {
@@ -59,8 +59,7 @@ class SleedBanner extends Module
         return parent::install() 
             && $this->installConfig()
             && $this->registerHook('displayHeader')
-            && $this->registerHook('displayTopColumn')
-            && $this->registerHook('displayBanner');
+            && $this->registerHook('displayTopColumn');
     }
 
     public function uninstall()
@@ -75,17 +74,17 @@ class SleedBanner extends Module
         $languages = Language::getLanguages(false);
 
 		foreach ($languages as $lang) {
-
-            $values_per_lang['SLEEDBANNER_IMG_DESKTOP'][$lang['id_lang']] = '';
-            $values_per_lang['SLEEDBANNER_IMG_MOBILE'][$lang['id_lang']] = '';
-            $values_per_lang['SLEEDBANNER_ALT'][$lang['id_lang']] = '';
-
-            Configuration::updateValue('SLEEDBANNER_IMG_DESKTOP', $values_per_lang['SLEEDBANNER_IMG_DESKTOP']);
-            Configuration::updateValue('SLEEDBANNER_IMG_MOBILE', $values_per_lang['SLEEDBANNER_IMG_MOBILE']);
-            Configuration::updateValue('SLEEDBANNER_ALT', $values_per_lang['SLEEDBANNER_ALT']);
-
+            $id_lang = $lang['id_lang'];
+            $values_per_lang['SLEEDBANNER_IMG_DESKTOP'][$id_lang] = '';
+            $values_per_lang['SLEEDBANNER_IMG_MOBILE'][$id_lang] = '';
+            $values_per_lang['SLEEDBANNER_ALT'][$id_lang] = '';    
         }
-		return true;
+
+        Configuration::updateValue('SLEEDBANNER_IMG_DESKTOP', $values_per_lang['SLEEDBANNER_IMG_DESKTOP']);
+        Configuration::updateValue('SLEEDBANNER_IMG_MOBILE', $values_per_lang['SLEEDBANNER_IMG_MOBILE']);
+        Configuration::updateValue('SLEEDBANNER_ALT', $values_per_lang['SLEEDBANNER_ALT']);
+		
+        return true;
     }
 
     public function uninstallConfig()
@@ -101,8 +100,14 @@ class SleedBanner extends Module
         $languages = Language::getLanguages(false);
 
 		foreach ($languages as $lang) {
-            Configuration::get('SLEEDBANNER_IMG_DESKTOP', $lang['id_lang']) && @unlink(dirname(__FILE__).'/views/img/'.Configuration::get('SLEEDBANNER_IMG_DESKTOP', $lang['id_lang']));
-            Configuration::get('SLEEDBANNER_IMG_MOBILE', $lang['id_lang']) && @unlink(dirname(__FILE__).'/views/img/'.Configuration::get('SLEEDBANNER_IMG_MOBILE', $lang['id_lang']));
+
+            $id_lang = $lang['id_lang'];
+
+            Configuration::get('SLEEDBANNER_IMG_DESKTOP', $id_lang) 
+                && @unlink(dirname(__FILE__).'/views/img/'.Configuration::get('SLEEDBANNER_IMG_DESKTOP', $id_lang));
+
+            Configuration::get('SLEEDBANNER_IMG_MOBILE', $id_lang) 
+                && @unlink(dirname(__FILE__).'/views/img/'.Configuration::get('SLEEDBANNER_IMG_MOBILE', $id_lang));
         }
 
         return true;
@@ -122,7 +127,7 @@ class SleedBanner extends Module
 
         foreach ($languages as $lang)
         {
-            $imageManager = new ImageManager;
+            $imageManager = new ImageManager();
 
             $reqHasImageDesktop = $this->handleIssetImage('banner_img_desktop_', $imageManager, $lang); 
 
@@ -306,12 +311,5 @@ class SleedBanner extends Module
 
         return $this->display(__FILE__, 'views/templates/hook/sleedbanner.tpl');
     }
-
-
-    // CUSTOM HOOK
-    // public function hookDisplayBanner()
-    // {
-    //     return $this->display(__FILE__, 'sleedbanner.tpl');
-    // }
 
 }

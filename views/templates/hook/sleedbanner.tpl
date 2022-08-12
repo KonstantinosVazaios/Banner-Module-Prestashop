@@ -27,6 +27,6 @@
 <div class="sleed-banner col-xs-12">
     <picture>
         <source media="(min-width:766px)" srcset="{$image_path_desktop|escape:'htmlall':'UTF-8'}">
-        <img class="banner-img" src="{$image_path_mobile|escape:'htmlall':'UTF-8'}" alt="{$image_alt|escape:'htmlall':'UTF-8'}">
+        <img class="banner-img" src="{$image_path_mobile|escape:'htmlall':'UTF-8'}" alt="{$image_alt|escape:'htmlall':'UTF-8'}" loading="lazy">
     </picture>
 </div>
