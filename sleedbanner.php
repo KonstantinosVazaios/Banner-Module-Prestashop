@@ -103,11 +103,15 @@ class SleedBanner extends Module
 
             $id_lang = $lang['id_lang'];
 
-            Configuration::get('SLEEDBANNER_IMG_DESKTOP', $id_lang) 
-                && @unlink(dirname(__FILE__).'/views/img/'.Configuration::get('SLEEDBANNER_IMG_DESKTOP', $id_lang));
+            $img_desktop = Configuration::get('SLEEDBANNER_IMG_DESKTOP', $id_lang);
+            if ($img_desktop) {
+                @unlink(__DIR__ . '/views/img/' . $img_desktop);
+            }
 
-            Configuration::get('SLEEDBANNER_IMG_MOBILE', $id_lang) 
-                && @unlink(dirname(__FILE__).'/views/img/'.Configuration::get('SLEEDBANNER_IMG_MOBILE', $id_lang));
+            $img_mobile = Configuration::get('SLEEDBANNER_IMG_MOBILE', $id_lang);
+            if ($img_mobile) {
+                @unlink(__DIR__ . '/views/img/' . $img_mobile);
+            }
         }
 
         return true;
